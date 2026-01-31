@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: 'https://local-general-store-web.onrender.com/',
+  baseURL: 'https://local-general-store-web.onrender.com',
   withCredentials: true,
 });
 
