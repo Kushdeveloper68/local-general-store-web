@@ -4,29 +4,43 @@ const userModel = require("../models/userModel");
 const {popularProductModel, offerProductModel} = require("../models/productModel")
 // controller for login post request of admin by login page and when match sent user and jwt token to frontend 
 
+async function login(req, res) {
+  const { username, password } = req.body;
 
-async function login(req , res) {
-    console.log(req.body)
-    const {username , password} = req.body;
-    if(!username || !password) {
-        return res.status(400).json({message: "Username and password are required"});
+  if (!username || !password) {
+    return res.status(400).json({ message: "Username and password are required" });
+  }
+
+  try {
+    const user = await userModel.findOne({ username });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
     }
-    try {
-        const user = await userModel.findOne({username});
-        if (!user) {
-            return res.status(404).json({message: "User not found"});
-        }
-        const isMatch = await bcrpyt.compare(password, user.password);
-        if (!isMatch) {
-            return res.status(401).json({message: "Invalid credentials"});
-        }
-        const token = jwt.sign({id: user._id, username: user.username}, process.env.JWT_SECRET, {expiresIn: "1h"});
-        res.cookie("token", token, {httpOnly: true});
-        res.json({message: "Login successful", user, token});
-    } catch (error) {
-        res.status(500).json({message: error.message});
+
+    const isMatch = await bcrpyt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: "Invalid credentials" });
     }
+
+    const token = jwt.sign(
+      { id: user._id, username: user.username },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      maxAge: 60 * 60 * 1000
+    });
+
+    res.json({ message: "Login successful" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 }
+
 
 // controller for admin to get all the product list in popular products and send to frontend
 async function getAllPopularProducts(req, res) {
