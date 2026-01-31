@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.use(cors({
-  origin: "https://lkmart.onrender.com/", //  frontend URL
+  origin: "https://lkmart.onrender.com/" || "http://localhost:5173", //  frontend URL
   credentials: true
 }));
 
