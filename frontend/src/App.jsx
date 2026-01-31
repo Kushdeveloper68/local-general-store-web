@@ -1,6 +1,8 @@
 import './App.css'
-import { Home, About ,DeliveryAndOrdering,ContectAndLocation,LatestOffer} from "./pages"
+import { Home, About ,DeliveryAndOrdering,ContectAndLocation,LatestOffer, AdminPanel, AdminLogin} from "./pages"
 import {BrowserRouter, Route, Router, Routes} from "react-router-dom"
+import ProtectedRoute from "./components/ProtectedRoute"
+
 function App() {
 
   return (
@@ -12,6 +14,15 @@ function App() {
         <Route path="/delivery-and-ordering" element={<DeliveryAndOrdering />} />
         <Route path="/contact-and-location" element={<ContectAndLocation />} />
         <Route path="/latest-offer" element={<LatestOffer />} />
+        <Route path="/admin-login" element={<AdminLogin />} />
+        <Route 
+          path="/admin-panel" 
+          element={
+            <ProtectedRoute>
+              <AdminPanel />
+            </ProtectedRoute>
+          } 
+        />
       </Routes>
     </BrowserRouter>
     </>

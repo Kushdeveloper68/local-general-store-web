@@ -1,64 +1,18 @@
 import React from 'react'
+import {Navbar, Footer} from "../components"
+import { getWhatsAppLink } from '../api/api';
 
+const handleWhatsAppHero = () => {
+    const link = getWhatsAppLink()
+    window.open(link, '_blank')
+  }
 function DeliveryAndOrdering() {
   return (
      <div
       className="relative flex h-auto min-h-screen w-full flex-col group/design-root"
     >
       {/* <!-- Navbar --> */}
-      <header
-        className="sticky top-0 z-50 w-full border-b border-[#eaf0f0] dark:border-[#2a3433] bg-[#f9fbfb] dark:bg-[#141e1d]"
-      >
-        <div
-          className="px-4 md:px-10 py-3 flex items-center justify-between max-w-[1280px] mx-auto"
-        >
-          <div className="flex items-center gap-4 text-[#111818] dark:text-white">
-            <div className="size-8 flex items-center justify-center text-primary">
-              <span className="material-symbols-outlined text-3xl">storefront</span>
-            </div>
-            <h2 className="text-lg font-bold leading-tight tracking-[-0.015em]">
-              Local Grocery
-            </h2>
-          </div>
-          {/* <!-- Desktop Menu --> */}
-          <div className="hidden md:flex flex-1 justify-end gap-8 items-center">
-            <div className="flex items-center gap-9">
-              <a
-                className="text-sm font-medium leading-normal hover:text-primary transition-colors"
-                href="#"
-                >Home</a
-              >
-              <a
-                className="text-sm font-medium leading-normal hover:text-primary transition-colors"
-                href="#"
-                >Products</a
-              >
-              <a
-                className="text-sm font-medium leading-normal hover:text-primary transition-colors"
-                href="#"
-                >Offers</a
-              >
-              <a
-                className="text-sm font-medium leading-normal hover:text-primary transition-colors"
-                href="#"
-                >Contact</a
-              >
-            </div>
-            <button
-              className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#256663] transition-colors"
-            >
-              <span className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-[20px]">chat</span>
-                <span>Order via WhatsApp</span>
-              </span>
-            </button>
-          </div>
-          {/* <!-- Mobile Menu Button --> */}
-          <button className="md:hidden p-2 text-[#111818] dark:text-white">
-            <span className="material-symbols-outlined">menu</span>
-          </button>
-        </div>
-      </header>
+      <Navbar/>
       <main className="flex-1 flex flex-col items-center w-full">
         {/* <!-- Hero Section --> */}
         <div
@@ -84,17 +38,20 @@ function DeliveryAndOrdering() {
             </p>
             <div className="flex flex-wrap gap-3 justify-center mt-4">
               <button
+              onClick={handleWhatsAppHero}
                 className="flex items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-base font-bold hover:bg-[#256663] transition-colors shadow-lg"
               >
                 <span className="material-symbols-outlined mr-2">chat</span>
                 Order via WhatsApp
               </button>
+              <a href="tel:+918160751735" target='_blank'>
               <button
                 className="flex items-center justify-center rounded-lg h-12 px-6 bg-white text-[#111818] text-base font-bold hover:bg-gray-100 transition-colors shadow-lg"
               >
                 <span className="material-symbols-outlined mr-2">call</span>
                 Call Now
               </button>
+              </a>
             </div>
           </div>
         </div>
@@ -170,8 +127,7 @@ function DeliveryAndOrdering() {
                   className="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary"
                 >
                   <span className="material-symbols-outlined text-3xl"
-                    >two_wheeler</span
-                  >
+                    >two_wheeler</span>
                 </div>
                 <div className="flex flex-col gap-2">
                   <h3 className="text-[#111818] dark:text-white text-lg font-bold">
@@ -225,9 +181,9 @@ function DeliveryAndOrdering() {
                   <ul
                     className="list-disc list-inside text-[#111818] dark:text-gray-200 text-sm font-medium mt-1 space-y-1"
                   >
-                    <li>Sector 12, 14, 15</li>
-                    <li>Green Valley Apartments</li>
-                    <li>Model Town Extension</li>
+                    <li>In 3km radius.</li>
+                    <li>Gandhidham collector road areas.</li>
+                    <li>Oslo sides areas.</li>
                   </ul>
                   <div
                     className="mt-3 inline-flex items-center gap-2 text-xs font-bold text-primary bg-primary/10 px-3 py-1.5 rounded-full w-fit"
@@ -235,7 +191,7 @@ function DeliveryAndOrdering() {
                     <span className="material-symbols-outlined text-[16px]"
                       >local_shipping</span
                     >
-                    Free delivery on orders above ₹500
+                    Free delivery on orders above ₹300
                   </div>
                 </div>
               </div>
@@ -406,29 +362,7 @@ function DeliveryAndOrdering() {
         </div>
       </main>
       {/* <!-- Bottom sticky for mobile or footer area --> */}
-      <footer
-        className="w-full bg-white dark:bg-[#1e2a29] border-t border-[#eaf0f0] dark:border-[#2a3433] py-8"
-      >
-        <div
-          className="max-w-[1280px] mx-auto px-4 md:px-10 flex flex-col md:flex-row justify-between items-center gap-6"
-        >
-          <div className="text-center md:text-left">
-            <h2 className="text-[#111818] dark:text-white text-lg font-bold">
-              Local Grocery Store
-            </h2>
-            <p className="text-[#5e8785] dark:text-gray-400 text-sm">
-              Serving the community with fresh essentials.
-            </p>
-          </div>
-          <div className="flex gap-4">
-            <button
-              className="flex items-center justify-center rounded-lg h-10 px-6 bg-primary text-white text-sm font-bold hover:bg-[#256663] transition-colors"
-            >
-              Order via WhatsApp
-            </button>
-          </div>
-        </div>
-      </footer>
+     <Footer/>
     </div>
   )
 }

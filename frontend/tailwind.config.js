@@ -10,6 +10,7 @@ export default {
       colors: {
         primary: "#2f7f7b",
         "primary-orange": "#5bec13",
+        
         "accent-orange": "#f97316",
         "primary-dark": "#236360",
         accent: "#f97316",

@@ -1,60 +1,17 @@
 import React from 'react'
+import {Navbar, Footer} from "../components"
+import { getOfferProductsPublicApi, getPopularProductsPublicApi, generateWhatsAppMessage, getWhatsAppLink } from '../api/api'
+import storeImage from "../assets/lk-storeimage.jpeg"
+
+const handleWhatsAppHero = () => {
+    const link = getWhatsAppLink()
+    window.open(link, '_blank')
+  }
 
 function About() {
   return (
    <>
-   <header
-      className="sticky top-0 z-50 w-full border-b border-solid border-[#ebf3e7] dark:border-white/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md"
-    >
-      <div
-        className="max-w-[1280px] mx-auto px-6 lg:px-20 py-4 flex items-center justify-between"
-      >
-        <div className="flex items-center gap-3">
-          <div
-            className="size-8 bg-primary-orange rounded-lg flex items-center justify-center text-white"
-          >
-            <span className="material-symbols-outlined text-background-dark"
-              >storefront</span
-            >
-          </div>
-          <h2
-            className="text-[#121b0d] dark:text-white text-xl font-extrabold tracking-tight"
-          >
-            Veda Market
-          </h2>
-        </div>
-        <nav className="hidden md:flex items-center gap-10">
-          <a
-            className="text-sm font-semibold hover:text-primary-orange transition-colors"
-            href="#"
-            >Home</a
-          >
-          <a
-            className="text-sm font-semibold hover:text-primary-orange transition-colors"
-            href="#"
-            >Products</a
-          >
-          <a className="text-sm font-semibold text-primary-orange" href="#">Our Story</a>
-          <a
-            className="text-sm font-semibold hover:text-primary-orange transition-colors"
-            href="#"
-            >Contact</a
-          >
-        </nav>
-        <div className="flex items-center gap-3">
-          <button
-            className="hidden sm:flex items-center justify-center rounded-lg h-10 px-5 bg-primary-orange text-[#121b0d] text-sm font-bold shadow-sm hover:opacity-90 transition-all"
-          >
-            Order via WhatsApp
-          </button>
-          <button
-            className="flex items-center justify-center rounded-lg h-10 w-10 bg-[#ebf3e7] dark:bg-white/5 text-[#121b0d] dark:text-white"
-          >
-            <span className="material-symbols-outlined">call</span>
-          </button>
-        </div>
-      </div>
-    </header>
+   <Navbar/>
     <main className="max-w-[1280px] mx-auto overflow-x-hidden">
       {/* <!-- Hero Section: Split Screen Story --> */}
       <section className="px-6 lg:px-20 py-12 @container">
@@ -63,7 +20,7 @@ function About() {
             <div
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-orange/20 text-green-800 dark:text-primary-orange text-xs font-bold uppercase tracking-wider w-fit"
             >
-              Since 2012
+              Since 2004
             </div>
             <h1
               className="text-[#121b0d] dark:text-white text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight"
@@ -86,19 +43,24 @@ function About() {
                 cornerstone. We believe that everyone deserves access to the
                 genuine flavors of India, delivered with the warmth of a
                 neighbor.
+                
               </p>
+              <p className='text-primary-orange font-bold p-1'>Owners: Teena & Naresh Kriplani</p>
             </div>
             <div className="flex flex-wrap gap-4 pt-4">
               <button
+              onClick={handleWhatsAppHero}
                 className="flex min-w-[180px] cursor-pointer items-center justify-center rounded-xl h-14 px-6 bg-primary-orange text-[#121b0d] text-base font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all"
               >
                 Chat on WhatsApp
               </button>
+              <a href="tel:+918160751735" target='_blank'>
               <button
                 className="flex min-w-[180px] cursor-pointer items-center justify-center rounded-xl h-14 px-6 bg-white dark:bg-white/5 border-2 border-[#ebf3e7] dark:border-white/10 text-[#121b0d] dark:text-white text-base font-bold hover:bg-gray-50 dark:hover:bg-white/10 transition-all"
               >
                 Call Our Store
               </button>
+              </a>
             </div>
           </div>
           <div className="w-full lg:w-1/2 relative">
@@ -112,7 +74,8 @@ function About() {
               className="relative w-full aspect-[4/5] bg-cover bg-center rounded-2xl shadow-2xl overflow-hidden border-8 border-white dark:border-background-dark"
               data-alt="Authentic colorful Indian grocery storefront with fresh vegetables"
               style={{
-                backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuC83aUXturHkC6YPlt-COHIjbRyE0PnmF-GT0HQ6glFsOBsElGz0IYgTtR3MDcBrcUD9enGD8hvgMn3wnQCiwHc9mWrMWVwZx4VCd0uzyfxZAeD9fOZpMHVXydDzPYNw77U7Sie-N6cYhP3m81VP6s6Rew6Q8Oi2SlCTccWk7c5lG3-pxBLP9eMYkzGf0KWP5d7aA7EenrMWNnQpU7IBuE7718kCiKUk0DTdPQFFwewnJXZTfqB5sYKWlaCDnapRY3HEnQhMDec')",
+                backgroundImage: `url(${storeImage})`,
+                backgroundRepeat:"no-repeat",
               }}
             >
               <div
@@ -233,6 +196,7 @@ function About() {
                 >
                   Transparent pricing and the convenience of direct ordering. We
                   value the relationships built over every transaction.
+                  
                 </p>
               </div>
             </div>
@@ -252,58 +216,27 @@ function About() {
           </div>
           <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
             <button
+            onClick={handleWhatsAppHero}
               className="bg-primary-orange text-[#121b0d] px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all"
             >
               <span className="material-symbols-outlined">chat</span>
               Order via WhatsApp
             </button>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=23.07032721893287,70.14314756885035"
+                        target='_blank'>
             <button
               className="bg-white/10 border border-white/20 text-white px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-white/20 transition-all"
             >
               <span className="material-symbols-outlined">location_on</span>
               Find Our Store
             </button>
+            </a>
           </div>
         </div>
       </section>
       {/* <!-- Footer --> */}
-      <footer
-        className="px-6 lg:px-20 py-12 border-t border-[#ebf3e7] dark:border-white/10"
-      >
-        <div
-          className="flex flex-col md:flex-row justify-between items-center gap-6"
-        >
-          <div className="flex items-center gap-2">
-            <div
-              className="size-6 bg-primary-orange rounded flex items-center justify-center"
-            >
-              <span
-                className="material-symbols-outlined text-xs text-background-dark"
-                >storefront</span
-              >
-            </div>
-            <span className="font-bold">Veda Market</span>
-          </div>
-          <p className="text-sm text-[#121b0d]/50 dark:text-white/40">
-            © 2024 Local Indian Grocery Store. All rights reserved.
-          </p>
-          <div className="flex gap-6">
-            <a
-              className="text-[#121b0d]/50 dark:text-white/40 hover:text-primary-orange transition-colors"
-              href="#"
-              ><span className="material-symbols-outlined"
-                >social_leaderboard</span
-              ></a
-            >
-            <a
-              className="text-[#121b0d]/50 dark:text-white/40 hover:text-primary-orange transition-colors"
-              href="#"
-              ><span className="material-symbols-outlined">camera_alt</span></a
-            >
-          </div>
-        </div>
-      </footer>
     </main>
+      <Footer/>
    </>
   )
 }
