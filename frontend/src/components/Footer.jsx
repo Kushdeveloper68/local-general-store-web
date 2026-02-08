@@ -72,8 +72,8 @@ function Footer() {
         >
           <p>© 2026 LK Mart Gandhidham (kutch). All rights reserved.</p>
           <div className="flex gap-4">
-            <a className="hover:text-white" href="https:kushdeveloper.onrender.com/">Made By:</a>
-            <a className="hover:text-white" href="https:kushdeveloper.onrender.com/">Developer {"</>"}</a>
+            <a className="hover:text-white" href="https://kushdeveloper.onrender.com/" traget="_blank">Made By:</a>
+            <a className="hover:text-white" href="https://kushdeveloper.onrender.com/" traget="_blank">Developer {"</>"}</a>
           </div>
         </div>
       </div>
